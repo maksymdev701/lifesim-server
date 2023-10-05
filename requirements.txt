@@ -4,4 +4,3 @@ python-dotenv
 python-multipart
 pymongo
 aiofiles
-sseclient

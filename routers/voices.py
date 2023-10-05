@@ -1,8 +1,10 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, UploadFile, File
 
 import requests
 import os
 import json
+import aiofiles
+import openai
 
 router = APIRouter()
 
@@ -15,3 +17,12 @@ async def get_voices():
     print(en_voices)
     return {"voices": en_voices}
 
+@router.post("/transcript")
+async def get_transcript(audio: UploadFile = File(...)):
+    async with aiofiles.open("./static/audios/temp.mp3", "wb") as out_file:
+        while content := await audio.read(1024):
+            await out_file.write(content)
+    audio_file = open("./static/audios/temp.mp3", "rb")
+    transcript = openai.Audio.transcribe("whisper-1", audio_file)
+    # os.remove("./static/audios/temp.mp3")
+    return {"status": "success", "data": transcript["text"]}

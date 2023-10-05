@@ -5,7 +5,6 @@ import openai
 import os
 from dotenv import load_dotenv
 import requests
-from sseclient import SSEClient
 
 from serializers import chatbot_entity, chatbot_details_entity
 from utils import generate_filename, generate_slug
@@ -80,8 +79,9 @@ async def chat(slug: str, msg: list = Body(embed=True)):
     events = []
     for line in lines:
         if line.startswith("data:"):
-            event = json.loads(line.replace("data: ", ""))
-            events.append(event)
+            if "{" in line:
+                event = json.loads(line.replace("data: ", ""))
+                events.append(event)
     url = events[len(events) - 1]["url"]
     print(url)
 
