@@ -89,8 +89,8 @@ async def chat(slug: str, msg: list = Body(embed=True)):
     headers = {
         "accept": "text/event-stream",
         "content-type": "application/json",
-        "AUTHORIZATION": os.getenv("PLAY_HT_SECRET_KEY"),
-        "X-USER-ID": os.getenv("PLAY_HT_USER_ID"),
+        "AUTHORIZATION": settings.PLAY_HT_SECRET_KEY,
+        "X-USER-ID": settings.PLAY_HT_USER_ID,
     }
 
     response = requests.post(url, json=payload, headers=headers, stream=True)
