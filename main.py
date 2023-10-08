@@ -7,7 +7,7 @@ from routers import voices, chatbot
 
 app = FastAPI()
 
-origins = [settings.CLIENT_ORIGIN, "http://localhost:3000"]
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
