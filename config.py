@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     PLAY_HT_SECRET_KEY: str
     OPENAI_API_KEY: str
 
+    MONGO_INITDB_DATABASE: str
     DATABASE_URL: str
 
     JWT_PUBLIC_KEY: str
