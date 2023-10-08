@@ -7,7 +7,6 @@ class Settings(BaseSettings):
     OPENAI_API_KEY: str
 
     DATABASE_URL: str
-    MONGO_INITDB_DATABASE: str
 
     JWT_PUBLIC_KEY: str
     JWT_PRIVATE_KEY: str
